@@ -1,6 +1,11 @@
+// Importing core React libraries
 import React from "react";
 import ReactDOM from "react-dom/client";
 
+// Importing global styles
+import "./index.css";
+
+// Sample pizza data array
 const pizzaData = [
   {
     name: "Focaccia",
@@ -35,7 +40,7 @@ const pizzaData = [
     ingredients: "Tomato, mozarella, and pepperoni",
     price: 15,
     photoName: "pizzas/salamino.jpg",
-    soldOut: true,
+    soldOut: true, // This pizza is sold out
   },
   {
     name: "Pizza Prosciutto",
@@ -46,38 +51,54 @@ const pizzaData = [
   },
 ];
 
+// Top-level component that renders the whole app layout
 function App() {
   return (
-    <div>
-      <Header />
-      <Menu />
-      <Footer />
+    <div className="container">
+      <Header /> {/* Renders the app header */}
+      <Menu /> {/* Renders the menu section */}
+      <Footer /> {/* Renders the footer section */}
     </div>
   );
 }
 
+// Header component with app title
 function Header() {
-  return <h1>React Pizza Co.</h1>;
+  const style = {}; // Placeholder for future dynamic styles
+  return (
+    <header className="header">
+      <h1 style={style}>Fast React Pizza Co.</h1>
+    </header>
+  );
 }
+
+// Menu component where the pizza items will be displayed
 function Menu() {
   return (
-    <div>
+    <main className="menu">
       <h1>Our Menu</h1>
+      {/* Right now it's hardcoded — you can map over pizzaData here later */}
       <Pizza />
       <Pizza />
       <Pizza />
-    </div>
+    </main>
   );
 }
-function Footer() {
-  // return React.createElement("footer", null, "We're open");
-  // return <footer>{new Date().toLocaleTimeString()} We're open</footer>;
 
-  const hour = new Date().toLocaleTimeString();
-  const openHour = 12;
-  const closeHour = 22;
-  const isOpen = hour >= openHour && hour <= closeHour;
-  console.log(isOpen);
+// Footer component, currently showing current time and text
+function Footer() {
+  return (
+    <footer className="footer">
+      {new Date().toLocaleTimeString()} We're open
+    </footer>
+  );
+
+  // --- Optional logic for opening hours below (not currently used) ---
+  // const hour = new Date().toLocaleTimeString();
+  // const openHour = 12;
+  // const closeHour = 22;
+  // const isOpen = hour >= openHour && hour <= closeHour;
+  // console.log(isOpen);
 
   // if (hour >= openHour && hour <= closeHour) {
   //   alert("we're open");
@@ -86,6 +107,7 @@ function Footer() {
   // }
 }
 
+// Component to display a single pizza item (currently static)
 function Pizza() {
   return (
     <div>
@@ -96,9 +118,10 @@ function Pizza() {
   );
 }
 
+// React 18 way to render the root App component
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <App /> {/* Render the main App component */}
   </React.StrictMode>
 );
