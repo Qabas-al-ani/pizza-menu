@@ -78,10 +78,28 @@ function Menu() {
     <main className="menu">
       <h1>Our Menu</h1>
       {/* Right now it's hardcoded — you can map over pizzaData here later */}
-      <Pizza />
-      <Pizza />
-      <Pizza />
+
+      <ul className="pizzas">
+        {pizzaData.map(pizza => (
+          <Pizza pizzaObj={pizza} key={pizza.name} />
+        ))}
+      </ul>
     </main>
+  );
+}
+
+// Component to display a single pizza item (currently static)
+function Pizza(props) {
+  console.log(props);
+  return (
+    <li className="pizza">
+      <img src={props.pizzaObj.photoName} alt={props.pizzaObj.name} />
+      <div>
+        <h1>{props.pizzaObj.name}</h1>
+        <p>{props.pizzaObj.ingredients}</p>
+        <span>{props.pizzaObj.price + 3}</span>
+      </div>
+    </li>
   );
 }
 
@@ -105,17 +123,6 @@ function Footer() {
   // } else {
   //   alert("we're closed");
   // }
-}
-
-// Component to display a single pizza item (currently static)
-function Pizza() {
-  return (
-    <div>
-      <img src="pizzas/spinaci.jpg" alt="Delicious pepperoni pizza" />
-      <h1>Pizza Spinaci</h1>
-      <p>Tomato, mozarella, and pepperoni</p>
-    </div>
-  );
 }
 
 // React 18 way to render the root App component
